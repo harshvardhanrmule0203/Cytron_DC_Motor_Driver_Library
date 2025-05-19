@@ -13,27 +13,27 @@ void Cytron::rotate(int value){
     else{
         digitalWrite(dir_pin,!direction);
     }
-    analogWrite(pwm,abs(value));
+    analogWrite(pwm, abs(value));
 }
 
-void Cytron::test(){
+void Cytron::test(int pwmvalue, int Delay){
    Serial.begin(9600);
    Serial.println(String("testing Cytron pins pwm - ") + pwm + String("  direction - ") + dir_pin);
    delay(2000);
-   for(int i = 0;i<50;i+=5){
-    rotate(i);
+   for(int i = 0;i<pwmvalue;i+=5){
+    rotate(pwmvalue);
     Serial.println(String("PWM - ")+i);
-    delay(200);
+    delay(Delay);
    }
-   for(int i = 50;i>-50;i-=5){
+   for(int i = pwmvalue;i>-pwmvalue;i-=5){
     rotate(i);
     Serial.println(String("PWM - ")+i);
-    delay(200);
+    delay(Delay);
    }
-   for(int i = -50;i<0;i+=5){
+   for(int i = -pwmvalue;i<0;i+=5){
     rotate(i);
     Serial.println(String("PWM - ")+i);
-    delay(200);
+    delay(Delay);
    }
    Serial.println("test complete!");
 }
